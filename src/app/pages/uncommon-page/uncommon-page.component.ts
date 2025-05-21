@@ -7,4 +7,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   templateUrl: './uncommon-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UncommonPageComponent { }
+export default class UncommonPageComponent { }

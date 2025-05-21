@@ -7,4 +7,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   templateUrl: './numbers-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NumbersPageComponent { }
+export default class NumbersPageComponent { }
