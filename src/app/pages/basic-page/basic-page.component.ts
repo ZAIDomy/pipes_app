@@ -14,9 +14,13 @@ export default class BasicPageComponent {
 
   customDate = signal(new Date() );
 
-  tickingDateEffect=effect(()=>{
+  tickingDateEffect=effect((onCleanup)=>{
     const interval = setInterval(() => {
       this.customDate.set(new Date())
     }, 1000);
-  })
+
+    onCleanup(()=>{
+      clearInterval(interval);
+    })
+  });
 }
