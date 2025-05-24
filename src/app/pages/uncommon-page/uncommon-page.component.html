@@ -7,7 +7,7 @@
 
     <app-card title="i18nSelectPipe">
         <p>Saludos {{client().name}}, es un placer {{client().gender | i18nSelect:invitationMap }} a nuestro evento.</p>
-        <button 
+        <button
         (click)="changeClient()"
         class="btn btn-primary btn-xs">cambiar cliente</button>
     </app-card>
@@ -15,7 +15,7 @@
 
     <app-card title="i18nPluralPipe">
         <p>Actualmente {{ clients().length | i18nPlural:clientsMap() }}</p>
-        <button 
+        <button
         [disabled]="clients().length===0"
         (click)="ereaseClient()"
         class="btn btn-primary btn-xs">borrar cliente</button>
@@ -30,6 +30,12 @@
         <p class="text-primary">{{clients()|slice:1:3}}</p>
         <b>Slice:3:4</b>
         <p class="text-primary">{{clients()|slice:3:4}}</p>
-    </app-card>    
+    </app-card>
+
+    <app-card title="JsonPipe">
+      <pre class="text-primary">{{clients()|json}}</pre>
+      <pre class="text-primary">{{client()|json}}</pre>
+      <p class="text-primary">{{clients().join(', ')|json | uppercase }}</p>
+    </app-card>
 
 </div>
