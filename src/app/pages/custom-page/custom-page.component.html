@@ -19,14 +19,27 @@
 
 <section class="my-2">
     
-    <h1 class="text-2xl font-bold">Ordenando por: {{sortBy()| titlecase }}</h1>
-    <div class="flex gap-2 justify-end w-full">
+    <h1 class="text-2xl font-bold">Filtrado por: {{searchQuery()}} Ordenando por: {{sortBy()| titlecase }}</h1>
+
+    <div class="flex gap-2 justify-end w-full mt-2">
+
+        <input 
+        type="text"
+        class="input input-borderer w-full max-w-xs"
+        placeholder="Buscar heroe"
+        (input)="searchQuery.set(txtSearch.value)"
+        #txtSearch
+        >
+
+        <div class="flex flex-1"></div>
+
         <button (click)="sortBy.set('name')" class="btn btn-primary">Por nombre</button>
         <button (click)="sortBy.set('canFly')" class="btn btn-accent">Por volar</button>
         <button (click)="sortBy.set('color')" class="btn btn-secondary">Por color</button>
         <button (click)="sortBy.set('creator')" class="btn btn-info">Por creador</button>
 
     </div>
+
 </section>
 
 <div class="overflow-x-auto w-full">
@@ -42,7 +55,7 @@
       </tr>
     </thead>
     <tbody>
-        @for ( hero of heroes() | heroSortBy:sortBy(); track hero.id) {
+        @for ( hero of heroes() | heroFilter:searchQuery() | heroSortBy:sortBy(); track hero.id) {
             <tr>
               <th>{{hero.id}}</th>
               <td>{{hero.name}}</td>
