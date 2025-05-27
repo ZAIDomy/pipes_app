@@ -19,12 +19,12 @@
 
 <section class="my-2">
     
-    <h1 class="text-2xl font-bold">Pipes personalizados en accion</h1>
+    <h1 class="text-2xl font-bold">Ordenando por: {{sortBy()| titlecase }}</h1>
     <div class="flex gap-2 justify-end w-full">
-        <button class="btn btn-primary">Por nombre</button>
-        <button class="btn btn-accent">Por volar</button>
-        <button class="btn btn-secondary">Por color</button>
-        <button class="btn btn-info">Por creador</button>
+        <button (click)="sortBy.set('name')" class="btn btn-primary">Por nombre</button>
+        <button (click)="sortBy.set('canFly')" class="btn btn-accent">Por volar</button>
+        <button (click)="sortBy.set('color')" class="btn btn-secondary">Por color</button>
+        <button (click)="sortBy.set('creator')" class="btn btn-info">Por creador</button>
 
     </div>
 </section>
@@ -42,13 +42,13 @@
       </tr>
     </thead>
     <tbody>
-        @for (hero of heroes(); track hero.id) {
+        @for ( hero of heroes() | heroSortBy:sortBy(); track hero.id) {
             <tr>
               <th>{{hero.id}}</th>
               <td>{{hero.name}}</td>
               <td class="text-xs w-44"
                   [class.text-info]="hero.canFly"
-                  [class.text-warning]="!hero.canFly"
+                  [class.text-secondary]="!hero.canFly"
               >
                 {{hero.canFly | canFly }}
               </td>
@@ -56,9 +56,13 @@
               class="text-xs w-44"
               [style.color]="hero.color | heroTextColor"
               >{{hero.color | heroColor | titlecase }}</td>
-              <td>{{hero.creator|creator }}</td>
+              <td
+                [class.text-primary]="hero.creator===0"
+                [class.text-error]="hero.creator===1"
+              >{{hero.creator|creator }}</td>
             </tr>
         }
     </tbody>
   </table>
+  <br>
 </div>
