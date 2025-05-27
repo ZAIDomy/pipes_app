@@ -54,8 +54,8 @@
               </td>
               <td 
               class="text-xs w-44"
-              [style.color]="hero.color | heroColor"
-              >{{hero.color | heroColor }}</td>
+              [style.color]="hero.color | heroTextColor"
+              >{{hero.color | heroColor | titlecase }}</td>
               <td>{{hero.creator|creator }}</td>
             </tr>
         }
