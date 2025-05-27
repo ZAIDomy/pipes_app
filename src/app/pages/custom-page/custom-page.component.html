@@ -46,9 +46,17 @@
             <tr>
               <th>{{hero.id}}</th>
               <td>{{hero.name}}</td>
-              <td>{{hero.canFly}}</td>
-              <td>{{hero.color}}</td>
-              <td>{{hero.creator}}</td>
+              <td class="text-xs w-44"
+                  [class.text-info]="hero.canFly"
+                  [class.text-warning]="!hero.canFly"
+              >
+                {{hero.canFly | canFly }}
+              </td>
+              <td 
+              class="text-xs w-44"
+              [style.color]="hero.color | heroColor"
+              >{{hero.color | heroColor }}</td>
+              <td>{{hero.creator|creator }}</td>
             </tr>
         }
     </tbody>
